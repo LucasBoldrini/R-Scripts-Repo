@@ -1,33 +1,60 @@
 library(tidyverse)
 library(readxl)
+library(RColorBrewer)
 
 # Read data from Excel
-data <- read_excel("scan_times_unique - Nov 5.xlsx")
+data <- read_excel("scan_times_unique - Nov 5 - Sum_Badge.xlsx")
 
-# Clean and transform the data
-data <- data %>%
-  select(scan_type, badge_type, time) %>%
-  filter(scan_type == "entry") # %>%
-  # mutate(time = as.POSIXct(strptime(time, "%I:%M:%S%p"), tz = "UTC"))
+# Check the structure of the time column
+str(data$time)
 
-# Calculate the total number of scanned badges
-total_badges <- nrow(data)
+# Convert time to Paris time (CET)
+data$time <- as.POSIXct(data$time, format = "%I:%M:%S%p", tz = "Europe/Paris")
+
+# Filter out rows with missing or invalid time values
+data <- data[complete.cases(data$time), ]
 
 # Create the grouped line chart using ggplot2
-p <- ggplot(data, aes(x = time, color = badge_type)) +
-  geom_freqpoly(binwidth = 400, show.legend = TRUE, size = 1) +
-  scale_x_datetime(labels = scales::time_format("%I:%M %p"), breaks = seq(min(data$time), max(data$time), by = "60 min")) +
-  scale_y_continuous(breaks = seq(0, 1000, by = 10)) +  # Adjust the breaks for y-axis
-  labs(title = paste("Scanned Badges - November 5"),
+p <- ggplot(data, aes(x = time)) +
+  geom_line(aes(y = exhibitor, color = "Exhibitor"), size = 1) +
+  geom_line(aes(y = general, color = "General"), size = 1) +
+  geom_line(aes(y = guest, color = "Guest"), size = 1) +
+  geom_line(aes(y = judge, color = "Judge"), size = 1) +
+  geom_line(aes(y = sponsor, color = "Sponsor"), size = 1) +
+  geom_line(aes(y = team_member, color = "Team Member"), size = 1) +
+  geom_line(aes(y = volunteer, color = "Volunteer"), size = 1) +
+  geom_line(aes(y = staff, color = "Staff"), size = 1) +  # Add staff line
+  scale_x_datetime(labels = scales::time_format("%I:%M %p", tz = "Europe/Paris"), 
+                   breaks = seq(min(data$time, na.rm = TRUE), max(data$time, na.rm = TRUE), by = "30 min"),
+                   timezone = "Europe/Paris") +
+  scale_y_continuous(breaks = seq(0, max(3500, na.rm = TRUE), by = 50)) +
+  labs(title = paste("Cumulative Scanned Badges - November 5"),
        x = "Time of Scan",
-       y = "Number of Scanned Badges",
-       color = "Badge Type") +
-  guides(color = guide_legend(override.aes = list(size = 1.5))) +  # Increase legend line width
+       y = "Cumulative Count",
+       color = "Expo Group") +
+  guides(color = guide_legend(override.aes = list(size = 1.5))) +
   theme_minimal() +
   theme(panel.grid.major.x = element_line(color = NA),
         panel.grid.minor.x = element_line(color = NA),
-        panel.grid.major.y = element_line(color = "#f0f0f0"),  # Set color to black for major grid lines
+        panel.grid.major.y = element_line(color = "#f0f0f0"),
         panel.grid.minor.y = element_blank(),
-        axis.text.x = element_text(size = 8, vjust = 12),  # Adjust vjust to displace tick labels up
-        plot.title = element_text(size = 20))  # Adjust title size
+        axis.text.x = element_text(size = 10, vjust = 1, angle = 30),
+        plot.title = element_text(size = 20)) +
+  geom_vline(xintercept = as.numeric(seq(min(data$time), max(data$time), by = "30 min")),
+             linetype = "dashed", color = "gray", alpha = 0.5) # +
+  # Define a color palette for all variables
+  # scale_color_manual(breaks = c(
+  #   "Exhibitor", "General", "Guest", "Judge", "Sponsor", "Team Member", "Volunteer", "Staff"
+  # ),
+  # values = c(
+  #   Exhibitor = "red",
+  #   General = "blue",
+  #   Guest = "green",
+  #   Judge = "purple",
+  #   Sponsor = "orange",
+  #   `Team Member` = "yellow",
+  #   Volunteer = "brown",
+  #   Staff = "cyan"
+  # ))
+
 p
