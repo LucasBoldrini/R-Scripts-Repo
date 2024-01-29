@@ -1,21 +1,28 @@
+library(readxl)
 library(wordcloud)
 library(RColorBrewer)
 library(tm)
 
-# Specify the path to your text file
-text_file_path <- "igem__2023_titleandabstracts.txt"
+data <- read_excel("Space Teams Abstracts.xlsx")
 
-# Read text from the text file
-text_data <- tolower(readLines(text_file_path, warn = FALSE))
+text_data <- data$Project_Abstract
 
-# Create a Corpus
+# Define custom stopwords
+custom_stopwords <- c("will", "using", "can", "help", "work", "finally", "applications",
+                      "tools", "goal", "however", "novel", "useful", "step", "test",
+                      "rate", "enhance", "year", "provide", "several", "build", "since",
+                      "major", "units", "based", "used", "aims", "one", "aim", "cost",
+                      "create", "three", "key", "using", "make", "essential", "biology", "biological", "first", "ways", "due", "within", "like", "thus")
+
 corpus <- Corpus(VectorSource(text_data))
-corpus <- tm_map(corpus, content_transformer(tolower))
+corpus <- tm_map(corpus, tolower)
 corpus <- tm_map(corpus, removePunctuation)
 corpus <- tm_map(corpus, removeNumbers)
-corpus <- tm_map(corpus, removeWords, stopwords("english"))
+
+# Remove custom stopwords
+corpus <- tm_map(corpus, removeWords, c(stopwords("english"), custom_stopwords))
+
 corpus <- tm_map(corpus, stripWhitespace)
 text_data_processed <- unlist(sapply(corpus, as.character))
 
-# Create a word cloud
 wordcloud(text_data_processed, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
