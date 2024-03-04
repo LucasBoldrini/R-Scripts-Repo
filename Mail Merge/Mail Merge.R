@@ -5,7 +5,7 @@ recipient_data <- readxl::read_excel("Mail_Merge.xlsx") # must contain columns "
 
 send_emails <- function(recipient_data) {
   creds <- creds(
-    user = "lucas@igem.org",  # For Gmail, turn on 2-step verification and add an app password, which should be used as the log in credentials
+    user = "lucas@igem.org",  # For Gmail, turn on 2-step verification and add an app password, which should be used as the log in credentials when running this script
     host = "smtp.gmail.com",
     port = 587,
     use_ssl = TRUE
