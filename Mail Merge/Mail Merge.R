@@ -26,11 +26,10 @@ send_emails <- function(recipient_data) {
     )
     
     # Add PDF attachment
-    # email <- add_attachment(
-    #  email,
-    #  file = "path/to/your/pdf/file.pdf",  # Replace with the path to your PDF file
-    #  name = "attachment.pdf"
-    #  )
+     email <- add_attachment(
+      email,
+      file = "C:/Users/lucas/Desktop/Team Experience Manager/Scripts/2024_Villages_Outline.pdf"
+      )
     
     # Send email
     email %>%
