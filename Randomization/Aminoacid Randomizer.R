@@ -19,15 +19,10 @@ x <- vector()
 mutated_seq <- data.frame()
 
 for (i in 1:length(my_vector)) {
-  
   for (j in 1:length(my_vector2)) {
-    
     mutated_seq <- my_vector
-    
     mutated_seq[i] <- my_vector2[j]
-    
     final_vector <- c(x, mutated_seq)
-    
     x <- final_vector
   }
 }
@@ -44,7 +39,6 @@ split_data <- split(final_vector, ceiling(seq_along(final_vector) / chunklength)
 split_data2 <- as.data.frame(t(split_data))
 
 for (k in split_data2) {
-  
   final_seqs <- stri_replace_all_regex(split_data2, '[c()," ]', "")
 }
 
@@ -52,7 +46,6 @@ final_data <- data.frame("All Mutated Sequences" = final_seqs)
 final_data
 
 for (l in final_data) {
-  
   no_num_data <- removeNumbers(l)
   no_num_data <- stri_replace_all_regex(no_num_data, "[list'`=]", "")
 }
