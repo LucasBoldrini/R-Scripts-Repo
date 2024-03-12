@@ -1,5 +1,3 @@
-#AA randomizer
-
 library("writexl")
 library(stringi)
 library(tm)
