@@ -1,7 +1,7 @@
 library(ggplot2)
 
 # Set the fixed and variable costs
-fixed_costs <- 7e6 # Total costs for full program are around 7M USD
+fixed_costs <- 100e6 # Add Real Data Here
 
 # Set the range of possible registration prices
 registration_prices <- seq(0, 25000, length.out = 1000)
