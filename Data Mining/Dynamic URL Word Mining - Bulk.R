@@ -5,7 +5,7 @@ library(readxl)
 library(writexl)
 
 # Start RSelenium
-rD <- rsDriver(browser = "firefox", port = 4545L)
+rD <- rsDriver(browser = "firefox", port = 4545L) # Check Java and Selenium Setup here: https://www.youtube.com/watch?v=GnpJujF9dBw
 remDr <- rD[["client"]]
 
 # Define your target keywords
