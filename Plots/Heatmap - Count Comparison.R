@@ -11,7 +11,7 @@ data <- read_excel("Heatmap_keywords.xlsx")
 data_melt <- melt(data, id.vars = "Keywords", variable.name = "URL_Type", value.name = "Hits")
 
 # Create a custom color palette using colorspace
-#custom_palette <- sequential_hcl(100, palette = "Rocket")
+# custom_palette <- sequential_hcl(100, palette = "Rocket")
 custom_palette <- rev(sequential_hcl(100, palette = "Rocket"))  # Invert the color palette
 
 # Create the heatmap with the custom color palette and no borders
