@@ -17,7 +17,7 @@ custom_palette <- rev(sequential_hcl(100, palette = "Rocket"))  # Invert the col
 # Create the heatmap with the custom color palette and no borders
 heatmap <- ggplot(data_melt, aes(x = Keywords, y = URL_Type, fill = Hits)) +
   geom_tile(color = "white") +
-  scale_fill_gradientn(colors = custom_palette) +  # Apply the custom color palette
+  scale_fill_gradientn(colors = custom_palette) +
   labs(title = "Heatmap of Keyword Hits by URL Type", x = NULL, y = NULL) +
   theme_minimal() +
   theme(
@@ -26,14 +26,13 @@ heatmap <- ggplot(data_melt, aes(x = Keywords, y = URL_Type, fill = Hits)) +
     plot.title = element_text(hjust = 0.5),
     panel.background = element_rect(fill = "white"),
     plot.background = element_rect(fill = "white"),
-    panel.grid = element_blank(),  # Remove gridlines
-    axis.ticks = element_blank(),  # Optionally remove axis ticks
-    panel.border = element_blank(),  # Remove panel border
-    plot.margin = margin(30, 30, 5, 5)  # Remove margins around the plot
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    panel.border = element_blank(),
+    plot.margin = margin(30, 30, 5, 5) 
   ) +
   coord_fixed(ratio = 1)  # Ensure tiles are squares
 
 heatmap
 
-# Save the plot with specific dimensions
 # ggsave("Heatmap_keywords_no_border.png", plot = heatmap, width = 10, height = 6, dpi = 300, units = "in", bg = "white")
