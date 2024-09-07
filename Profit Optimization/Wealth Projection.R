@@ -31,7 +31,7 @@ project_wealth <- function(starting_salary, annual_salary_growth, savings_rate, 
   return(cumulative_wealth)
 }
 
-# Example usage
+# Example usage for projected curve
 starting_salary <- 100000            # Starting net salary in euros
 annual_salary_growth <- 0.05         # X% annual salary increase
 savings_rate <- 0.20                 # Save X% of salary each year
@@ -46,7 +46,7 @@ wealth_projection <- project_wealth(starting_salary, annual_salary_growth, savin
 years_vector <- 1:years
 projected_data <- data.frame(Year = years_vector, Cumulative_Wealth = wealth_projection, Type = "Projected")
 
-# Real-life data (replace with your actual data)
+# Real-life data
 real_life_wealth <- c(20000, 50000, 80000) # In euros
 real_life_years <- c(1, 2, 3)  # Real data corresponding years
 real_life_data <- data.frame(Year = real_life_years, Cumulative_Wealth = real_life_wealth, Type = "Real")
