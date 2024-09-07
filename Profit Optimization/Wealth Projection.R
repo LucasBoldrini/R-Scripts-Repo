@@ -48,7 +48,7 @@ projected_data <- data.frame(Year = years_vector, Cumulative_Wealth = wealth_pro
 
 # Real-life data
 real_life_wealth <- c(20000, 50000, 80000) # In euros
-real_life_years <- c(1, 2, 3)  # Real data corresponding years
+real_life_years <- c(1, 2, 3)  # Real data's corresponding years
 real_life_data <- data.frame(Year = real_life_years, Cumulative_Wealth = real_life_wealth, Type = "Real")
 
 # Combine the projected and real data into one data frame
