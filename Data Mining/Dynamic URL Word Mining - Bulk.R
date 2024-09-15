@@ -8,7 +8,7 @@ library(writexl)
 rD <- rsDriver(browser = "firefox", port = 4545L) # Check Java and Selenium Setup here: https://www.youtube.com/watch?v=GnpJujF9dBw
 remDr <- rD[["client"]]
 
-# Define your target keywords
+# Define target keywords
 target_keywords <- c("autonomous food", "autonomous pharmaceutical", "autonomous food", "bioink", "biomarker monitoring", "biomining", "bioreactor", "biorefinery", "bioregenerative",
                      "cell expansion", "closed loop", "feedstock", "habitat pathogen", "health-indicative biomarkers", "health monitoring", "human-use items",
                      "human waste", "ISRU", "life support", "Lunar", "microbial electrolysis cell", "Mars", "Martian", "microbial fuel cell",
