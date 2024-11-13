@@ -24,7 +24,7 @@ Each script category has its own directory containing:
 - JSON clean-up script
 
 ### Encryption-Decryption
-- AES decription tool
+- AES decryption tool
 
 ### Generators
 - Automated PDF file generator
