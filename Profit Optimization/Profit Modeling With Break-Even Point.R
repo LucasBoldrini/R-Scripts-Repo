@@ -1,7 +1,7 @@
 library(ggplot2)
 
 # Set the fixed and variable costs
-fixed_costs <- 100e6 # All Real Number Here
+fixed_costs <- 100e6 # Add Real Number Here
 
 # Set the range of possible registration prices
 registration_prices <- seq(0, 25000, length.out = 1000)
@@ -9,8 +9,8 @@ registration_prices <- seq(0, 25000, length.out = 1000)
 # Define the demand function
 demand <- function(price) {
   # Set the parameters of the demand curve
-  intercept <- 1865 # Maximum number of teams that would participate if the competition were free (different for full program)
-  slope <- -0.10 # How the expected number of teams changes with the registration price
+  intercept <- 2000 # Maximum number of teams that would participate if the competition were free (arbitrary, different for full program)
+  slope <- -0.30 # How the expected number of teams changes with the registration price (arbitrary)
   
   # Calculate the expected number of teams
   expected_teams <- intercept + slope * price
@@ -50,7 +50,7 @@ p <- ggplot(data, aes(x = registration_prices, y = profit))
 p <- p + geom_line(color = "black", size = 1)
 
 # Calculate the y-value for the point at x = 5500 by interpolating the nearby values
-point_x <- 14000
+point_x <- 10000 # Arbitrary
 point_y <- approx(registration_prices, profit, xout = point_x)$y
 
 # Add a point to show the current registration price
@@ -61,7 +61,7 @@ p <- p + geom_point(aes(x = optimal_price, y = optimal_profit), color = "red", s
 
 # Add a label for the current average program price
 p <- p + annotate("text", x = point_x, y = point_y,
-                  label = paste0("Current Price: ", round(14000)), hjust = -0.1, vjust = 0)
+                  label = paste0("Current Price: ", round(10000)), hjust = -0.1, vjust = 0)
 
 # Add a label to show the value of the optimal registration price
 p <- p + annotate("text", x = optimal_price, y = optimal_profit,
