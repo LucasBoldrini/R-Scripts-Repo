@@ -4,10 +4,11 @@ This is a collection of R scripts developed for various data analysis, automatio
 
 ## 📚 Table of Contents
 
-- [Usage](#usage)
-- [Scripts Categories](#scripts-categories)
-- [Requirements](#requirements)
-- [License](#license)
+- Usage
+- Scripts Categories
+- Requirements
+- License
+- Disclaimer
 
 ## 📖 Usage
 
@@ -91,3 +92,7 @@ library(writexl)     # Write .xlsx files
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## ⚠️ Disclaimer
+These scripts were created for data visualization, processing and analysis and do not contain any proprietary, confidential, or classified information from iGEM Foundation and iGEM Europe. They are provided solely for educational and general-use purposes.
+
