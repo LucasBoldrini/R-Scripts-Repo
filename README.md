@@ -1,6 +1,6 @@
 # 🛠️ R Scripts Repository - Lucas Boldrini
 
-This is a collection of R scripts developed for various data analysis, automation, and business optimization tasks. These scripts were originally developed for personal use in a professional setting and have been refined over time.
+This is a collection of R scripts developed for various data analysis, automation, and business optimization tasks. These scripts were originally developed for personal use in a professional setting and are being refined over time.
 
 ## 📚 Table of Contents
 
